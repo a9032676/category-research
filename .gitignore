@@ -1,0 +1,4 @@
+*.agda~
+*.agdai
+.DS_Store
+

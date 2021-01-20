@@ -1,2 +1,1 @@
-*.agdai
-.DS_Store
+Category theory research in Agda

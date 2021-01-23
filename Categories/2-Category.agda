@@ -35,6 +35,6 @@ Cat {o} {m} = record
 [ C , D ] = record
   { Obj  = Functor C D
   ; _⇒_ = NaturalTransformation C D
-  ; id   = λ {F} → record { η = λ _ → Fₘ F (id C) }
+  ; id   = λ {F} → record { η = Fₘ F (id C) }
   ; _∘_  = _∘ᵛ_
   }

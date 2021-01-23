@@ -38,7 +38,7 @@ CovariantHomfunctor (record { _⇒_ = _⇒_ ;  _∘_ = _∘_ }) X = record
   ; Fₘ = _∘_
   }
 
-syntax CovariantHomfunctor ─ X = Hom[ X , ─ ]
+syntax CovariantHomfunctor C X = Hom C [ X ,─]
 
 -- Contravariant hom-functor
 -- Hom(─, X) : Cᵒᵖ → Set
@@ -48,5 +48,5 @@ ContravariantHomfunctor record { _⇒_ = _⇒_ ; _∘_ = _∘_ } X = record
   ; Fₘ = flip _∘_
   }
 
-syntax ContravariantHomfunctor ─ X = Hom[ ─ , X ] 
+syntax ContravariantHomfunctor C X = Hom C [─, X ] 
 

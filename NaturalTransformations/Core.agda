@@ -7,11 +7,11 @@ open import Functors.Core
 
 private
   variable
-    o m o' m' : Level
+    o₁ m₁ o₂ m₂ : Level
 
 record NaturalTransformation
-  (C : Category o m) (D : Category o' m')
-  (F G : Functor C D) : Set (o ⊔ m ⊔ o' ⊔ m') where
+  (C : Category o₁ m₁) (D : Category o₂ m₂)
+  (F G : Functor C D) : Set (o₁ ⊔ m₁ ⊔ o₂ ⊔ m₂) where
   open Functor F using (Fₒ)
   open Category D using (_⇒_)
   private module G = Functor G
@@ -21,7 +21,7 @@ record NaturalTransformation
 syntax NaturalTransformation C D F G = [ C , D ]⟨ F , G ⟩
 
 -- Vertical composition of natural transformation
-_∘ᵛ_ : {C : Category o m} {D : Category o' m'} {F G H : Functor C D}
+_∘ᵛ_ : {C : Category o₁ m₁} {D : Category o₂ m₂} {F G H : Functor C D}
        → [ C , D ]⟨ G , H ⟩
        → [ C , D ]⟨ F , G ⟩
        → [ C , D ]⟨ F , H ⟩

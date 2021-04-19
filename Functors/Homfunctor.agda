@@ -14,10 +14,10 @@ open Category
 
 private
   variable
-    o m o' m' : Level
+    o m : Level
 
 Hom[_,_] : (C₁ C₂ : Category o m) → Set (o ⊔ suc m)
-Hom[_,_] {_} {m} C₁ C₂ = Bifunctor C₁ C₂ (𝒮ℯ𝓉 m)
+Hom[_,_] {m = m} C₁ C₂ = Bifunctor C₁ C₂ (𝒮ℯ𝓉 m)
 
 -- Mixed-variant hom-functor
 -- C needs to be locally small category (or called category of set)
@@ -28,7 +28,7 @@ MixedVariantHomfunctor record { _⇒_ = _⇒_ ; _∘_ = _∘_ } = record
   }
 
 Representablefunctor : (Category o m) → Set (o ⊔ suc m)
-Representablefunctor {_} {m} C = Functor C (𝒮ℯ𝓉 m)
+Representablefunctor {m = m} C = Functor C (𝒮ℯ𝓉 m)
 
 -- Covariant hom-functor
 -- Hom(X, ─) : C → Set

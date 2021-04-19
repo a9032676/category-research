@@ -13,10 +13,10 @@ open NaturalTransformation using (η)
 
 private
   variable
-    o m o' m' : Level
+    o₁ m₁ o₂ m₂ : Level
 
 -- Cat Category
-Cat : Category (suc (o ⊔ m)) (o ⊔ m)
+Cat : Category (suc (o₁ ⊔ m₁)) (o₁ ⊔ m₁)
 Cat {o} {m} = record
   { Obj  = Category o m
   ; _⇒_ = Functor
@@ -31,10 +31,10 @@ Cat {o} {m} = record
   }
 
 -- Functor Category
-[_,_] : Category o m → Category o' m' → Category (o ⊔ m ⊔ o' ⊔ m') (o ⊔ m ⊔ o' ⊔ m')
+[_,_] : Category o₁ m₁ → Category o₂ m₂ → Category (o₁ ⊔ m₁ ⊔ o₂ ⊔ m₂) (o₁ ⊔ m₁ ⊔ o₂ ⊔ m₂)
 [ C , D ] = record
   { Obj  = Functor C D
   ; _⇒_ = NaturalTransformation C D
-  ; id   = λ {F} → record { η = Fₘ F (id C) }
+  ; id   = λ {F} → record { η = Fₘ F (Category.id C) }
   ; _∘_  = _∘ᵛ_
   }

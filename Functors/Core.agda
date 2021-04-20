@@ -43,8 +43,8 @@ EndoFunctor : Category o₁ m₁ → Set (o₁ ⊔ m₁)
 EndoFunctor {o₁ = o₁} {m₁ = m₁} C = Functor C C
 
 -- Identity functor
-id : EndoFunctor C
-id = record { Fₒ = idᶠ; Fₘ = idᶠ }
+IdentityFunctor : EndoFunctor C
+IdentityFunctor = record { Fₒ = idᶠ; Fₘ = idᶠ }
 
 open Category using (Obj) renaming (id to idᶜ)
 

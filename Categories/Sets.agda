@@ -4,7 +4,6 @@ open import Level
 
 open import Categories.Core
 
-
 -- Category of Sets
 𝒮ℯ𝓉 : (o : Level) → Category (suc o) o
 𝒮ℯ𝓉 o = record

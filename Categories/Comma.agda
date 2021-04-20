@@ -4,7 +4,7 @@ module Categories.Comma { o₁ m₁ o₂ m₂ o₃ m₃ : Level } where
 open import Categories.Core
 open import Categories.Product
 open import Data.Product renaming (_×_ to _×ᵖ_)
-open import Functors.Core hiding (id; _∘_)
+open import Functors.Core hiding (_∘_)
 
 private
   variable
@@ -24,6 +24,7 @@ record CommaObj (S : Functor A C) (T : Functor B C) : Set (o₁ ⊔ o₂ ⊔ m�
     β : Obj B
     m : Sₒ α ⇒ Tₒ β
 
+infix 4 Comma
 syntax Comma S T = S ↓ T
 
 Comma : (S : Functor A C) (T : Functor B C) → Category (o₁ ⊔ o₂ ⊔ m₃) (m₁ ⊔ m₂)

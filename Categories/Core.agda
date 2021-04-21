@@ -7,7 +7,7 @@ open import Function hiding (Inverse) renaming (_∘_ to _∘ᶠ_; id to idᶠ)
 record Category (o m : Level) : Set (suc (o ⊔ m)) where
   eta-equality
   -- Cause bug, declaration is ignored by Agda
-  infixr 20 _∘_
+  infixr 9 _∘_
   field
     Obj  : Set o
     _⇒_ : Rel Obj m

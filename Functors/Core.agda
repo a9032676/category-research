@@ -60,6 +60,8 @@ syntax ConstantFunctor X = Δ X
 --constant∘contraʳ : Functor C D.op
 --constant∘contraʳ = record { Fₒ = Fₒ; Fₘ = λ A⇒B → Fₘ C.id }
 
+infixr 9 _∘_
+
 _∘_ : (F : Functor C D) (G : Functor D E) → Functor C E
 _∘_
   record { Fₒ = Fₒ₁ ; Fₘ = Fₘ₁ }

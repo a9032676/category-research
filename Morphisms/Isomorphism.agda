@@ -3,6 +3,8 @@ module Morphisms.Isomorphism where
 open import Level
 open import Relation.Binary.PropositionalEquality public
 
+infixr 0 _≅_
+
 record _≅_ {ℓ₁ ℓ₂ : Level} {A : Set ℓ₁} {B : Set ℓ₂} (a : A) (b : B) : Set (ℓ₁ ⊔ ℓ₂) where
   field
     to : A → B

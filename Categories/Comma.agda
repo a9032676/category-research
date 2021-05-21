@@ -1,38 +1,54 @@
 open import Level
-module Categories.Comma { o₁ m₁ o₂ m₂ o₃ m₃ : Level } where
-
 open import Categories.Core
+
+module Categories.Comma
+  {o₁ m₁ e₁ o₂ m₂ e₂ o₃ m₃ e₃ : Level}
+  {A : Category o₁ m₁ e₁}
+  {B : Category o₂ m₂ e₂}
+  {C : Category o₃ m₃ e₃}
+  where
+
 open import Categories.Product
 open import Data.Product renaming (_×_ to _×ᵖ_)
 open import Functors.Core hiding (_∘_)
+open import CategoricalRelation.Heterogeneous using (hid)
 
-private
-  variable
-    A : Category o₁ m₁
-    B : Category o₂ m₂
-    C : Category o₃ m₃
+open import Relation.Binary.PropositionalEquality using (_≡_; refl)
 
 record CommaObj (S : Functor A C) (T : Functor B C) : Set (o₁ ⊔ o₂ ⊔ m₃) where
-  private module A = Category A
-  private module B = Category B
-  open Category hiding (_⇒_)
-  open Category C using (_⇒_)
   open Functor S renaming (Fₒ to Sₒ)
   open Functor T renaming (Fₒ to Tₒ)
   field
     α : Obj A
     β : Obj B
-    m : Sₒ α ⇒ Tₒ β
+    m : C [ Sₒ α , Tₒ β ]
+
+open CommaObj
+
+record _≡↓_
+  {S : Functor A C} {T : Functor B C}
+  {dom₁ cod₁ dom₂ cod₂ : CommaObj S T}
+  (p : A [ α dom₁ , α cod₁ ] ×ᵖ B [ β dom₁ , β cod₁ ])
+  (q : A [ α dom₂ , α cod₂ ] ×ᵖ B [ β dom₂ , β cod₂ ])
+  : Set (o₁ ⊔ e₁ ⊔ o₂ ⊔ e₂) where
+  field
+    eq-α-dom : α dom₁ ≡ α dom₂
+    eq-α-cod : α cod₁ ≡ α cod₂
+    eq-β-dom : β dom₁ ≡ β dom₂
+    eq-β-cod : β cod₁ ≡ β cod₂
+    eq-αₘ : CommutativeSquare {𝐶 = A} (proj₁ p) (hid {𝐶 = A} eq-α-dom) (hid {𝐶 = A} eq-α-cod) (proj₁ q)
+    eq-βₘ : CommutativeSquare {𝐶 = B} (proj₂ p) (hid {𝐶 = B} eq-β-dom) (hid {𝐶 = B} eq-β-cod) (proj₂ q)
 
 infix 4 Comma
 syntax Comma S T = S ↓ T
 
-Comma : (S : Functor A C) (T : Functor B C) → Category (o₁ ⊔ o₂ ⊔ m₃) (m₁ ⊔ m₂)
-Comma {A = A} {B = B} S T = record
+Comma : (S : Functor A C) (T : Functor B C) → Category (o₁ ⊔ o₂ ⊔ m₃) (m₁ ⊔ m₂) (o₁ ⊔ e₁ ⊔ o₂ ⊔ e₂)
+Comma S T = record
   { Obj  = CommaObj S T
   ; _⇒_ = λ dom cod → A [ α dom , α cod ] ×ᵖ B [ β dom , β cod ]
   ; id   = id A , id B
   ; _∘_  = λ B⇒C A⇒B → proj₁ B⇒C ∘ᴬ proj₁ A⇒B , proj₂ B⇒C ∘ᴮ proj₂ A⇒B
+  ; _≈_  = λ {dom} {cod} → _≡↓_ {S = S} {T = T} {dom} {cod} {dom} {cod}
   }
   where
     open CommaObj using (α; β)

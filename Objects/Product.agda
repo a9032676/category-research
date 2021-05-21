@@ -1,12 +1,13 @@
 open import Level
  
-open import Categories.Core
+open import Categories.Core using (Category)
 
-module Objects.Product {o m : Level} (𝒞 : Category o m) where
+module Objects.Product {o m e : Level} (𝐶 : Category o m e) where
 
--- A B : Ob(𝒞)
-record Product (A B : Category.Obj 𝒞) : Set (o ⊔ m) where
-  open Category 𝒞 using (Obj; _⇒_)
+open Category 𝐶 using (Obj; _⇒_)
+
+-- A B : Ob(𝐶)
+record Product (A B : Obj) : Set (o ⊔ m) where
   field
     A×B   : Obj
     π₁    : A×B ⇒ A

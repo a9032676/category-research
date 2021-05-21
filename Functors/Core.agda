@@ -2,26 +2,29 @@ module Functors.Core where
 
 open import Level
 open import Function hiding (Inverse) renaming (_∘_ to _∘ᶠ_; id to idᶠ)
+open import Relation.Binary using (Rel)
+open import Relation.Binary.PropositionalEquality using (_≡_; refl; subst)
+open import CategoricalRelation.Heterogeneous
 
-open import Categories.Core
+open import Categories.Core hiding (op; id)
 
 private
   variable
-    o₁ m₁ o₂ m₂ o₃ m₃ : Level
+    o₁ m₁ e₁ o₂ m₂ e₂ o₃ m₃ e₃ : Level
 
-record Functor (C : Category o₁ m₁) (D : Category o₂ m₂) : Set (o₁ ⊔ m₁ ⊔ o₂ ⊔ m₂) where
+record Functor (𝐶 : Category o₁ m₁ e₁) (𝐷 : Category o₂ m₂ e₂) : Set (o₁ ⊔ m₁ ⊔ e₁ ⊔ o₂ ⊔ m₂ ⊔ e₂) where
   eta-equality
-  private module C = Category C
-  private module D = Category D
+  private module 𝐶 = Category 𝐶
+  private module 𝐷 = Category 𝐷
   field
-    Fₒ : C.Obj → D.Obj
-    Fₘ : ∀ {A B : C.Obj} → (A C.⇒ B) → (Fₒ A D.⇒ Fₒ B)
-
-  OppositeFunctor : ∀ C D → Set (o₁ ⊔ m₁ ⊔ o₂ ⊔ m₂)
-  OppositeFunctor C D = Functor C.op D.op
+    Fₒ : Obj 𝐶 → Obj 𝐷
+    Fₘ : ∀ {A B : Obj 𝐶} → 𝐶 [ A , B ] → 𝐷 [ Fₒ A , Fₒ B ]
+    
+  OppositeFunctor : Set (o₁ ⊔ m₁ ⊔ e₁ ⊔ o₂ ⊔ m₂ ⊔ e₂)
+  OppositeFunctor = Functor 𝐶.op 𝐷.op
 
   -- Opposite functor
-  op : OppositeFunctor C D
+  op : OppositeFunctor
   op = record { Fₒ = Fₒ; Fₘ = Fₘ }
 
   -- Cotravariant functor for some specific cases only, just for instance: Constant functor, Covector ... etc.
@@ -31,26 +34,39 @@ record Functor (C : Category o₁ m₁) (D : Category o₂ m₂) : Set (o₁ ⊔
   --ContravariantFunctorʳ : ∀ C D → Set _
   --ContravariantFunctorʳ C D = Functor o m o' m' C D.op
 
+record _≡F_
+  {𝐶 : Category o₁ m₁ e₁} {𝐷 : Category o₂ m₂ e₂}
+  (F G : Functor 𝐶 𝐷) : Set (o₁ ⊔ m₁ ⊔ o₂ ⊔ e₂) where
+  open Functor F
+  open Functor G renaming (Fₒ to Gₒ; Fₘ to Gₘ)
+  field
+    eqₒ : ∀ {X : Obj 𝐶} → Fₒ X ≡ Gₒ X
+    eqₘ : ∀ {X Y : Obj 𝐶} (f : 𝐶 [ X , Y ]) → CommutativeSquare {𝐶 = 𝐷} (Fₘ f) (hid {𝐶 = 𝐷} eqₒ) (hid {𝐶 = 𝐷} eqₒ) (Gₘ f)
+
 private
   variable
-    C : Category o₁ m₁
-    D : Category o₂ m₂
-    E : Category o₃ m₃
-
+    𝐶 : Category o₁ m₁ e₁
+    𝐷 : Category o₂ m₂ e₂
+    𝐸 : Category o₃ m₃ e₃
 
 -- Endo functor
-EndoFunctor : Category o₁ m₁ → Set (o₁ ⊔ m₁)
-EndoFunctor {o₁ = o₁} {m₁ = m₁} C = Functor C C
+EndoFunctor : Category o₁ m₁ e₁ → Set (o₁ ⊔ m₁ ⊔ e₁)
+EndoFunctor 𝐶 = Functor 𝐶 𝐶
+
+syntax EndoFunctor 𝐶 = End⟨ 𝐶 ⟩
 
 -- Identity functor
-IdentityFunctor : EndoFunctor C
+IdentityFunctor : EndoFunctor 𝐶
 IdentityFunctor = record { Fₒ = idᶠ; Fₘ = idᶠ }
+
+Id : ∀ (𝐶 : Category o₁ m₁ e₁) → EndoFunctor 𝐶
+Id 𝐶 = IdentityFunctor {𝐶 = 𝐶}
 
 open Category using (Obj) renaming (id to idᶜ)
 
 -- Constant functor
-ConstantFunctor : (X : Obj D) → Functor C D
-ConstantFunctor {D = D} X = record { Fₒ = λ _ → X; Fₘ = λ A⇒B → idᶜ D }
+ConstantFunctor : (X : Obj 𝐷) → Functor 𝐶 𝐷
+ConstantFunctor {𝐷 = 𝐷} X = record { Fₒ = λ _ → X; Fₘ = λ A⇒B → idᶜ 𝐷 }
 
 syntax ConstantFunctor X = Δ X
 
@@ -62,8 +78,11 @@ syntax ConstantFunctor X = Δ X
 
 infixr 9 _∘_
 
-_∘_ : (F : Functor C D) (G : Functor D E) → Functor C E
+_∘_ : (F : Functor 𝐶 𝐷) (G : Functor 𝐷 𝐸) → Functor 𝐶 𝐸
 _∘_
   record { Fₒ = Fₒ₁ ; Fₘ = Fₘ₁ }
   record { Fₒ = Fₒ₂ ; Fₘ = Fₘ₂ }
   = record { Fₒ = Fₒ₂ ∘ᶠ Fₒ₁ ; Fₘ = Fₘ₂ ∘ᶠ Fₘ₁ }
+
+_² : (F : Functor 𝐶 𝐶) → Functor 𝐶 𝐶
+F ² = F ∘ F

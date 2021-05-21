@@ -1,4 +1,6 @@
 *.agda~
 *.agdai
+\#*.agda#
+.#*.agda
 .DS_Store
 

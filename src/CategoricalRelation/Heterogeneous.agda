@@ -1,7 +1,6 @@
-open import Level
-
 module CategoricalRelation.Heterogeneous where
 
+open import Level
 open import Categories.Core using (Category; Obj; _[_,_])
 open import Relation.Binary.PropositionalEquality using (_≡_; refl; subst)
 

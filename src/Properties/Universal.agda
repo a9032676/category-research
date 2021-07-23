@@ -31,8 +31,10 @@ record UniversalProperty
   {F : Functor 𝑪 𝑫} {X : Obj 𝑫} {A′ : Obj 𝑪}
   ((A , 𝑢) : X Universal-⇒ F) (f : 𝑫 [ X , Functor.Fₒ F A′ ]) (h : 𝑪 [ A , A′ ])
   : Set (e₂) where
+  open Category 𝑫 using (_∘_)
+  open Functor F using (Fₘ)
   field
-    prop : 𝑫 [ f ≈ ? ]
+    prop : 𝑫 [ f ≈ Fₘ h ∘ 𝑢 ]
 
 -}
 

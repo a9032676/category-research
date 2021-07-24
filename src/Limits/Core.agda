@@ -49,7 +49,7 @@ Cocone-↓ N F = F ↓ Δ
     Δ = ConstantFunctor N
 
 -- Limit also called a universal cone over some functor F
-record Limit (F : Functor 𝐽 𝐶) {𝑈 : Cone F} {C : Cone F} : Set (o₁ ⊔ m₁ ⊔ e₁ ⊔ o₂ ⊔ m₂ ⊔ e₂) where
+record Limit (F : Functor 𝐽 𝐶) {𝑈 : Cone F} {C : Cone F} : Set (o₁ ⊔ m₂ ⊔ e₂) where
   open Category 𝐶 using (_⇒_; _∘_)
   open Functor F using (Fₒ)
   open Cone C renaming (Apex to N)
@@ -57,7 +57,7 @@ record Limit (F : Functor 𝐽 𝐶) {𝑈 : Cone F} {C : Cone F} : Set (o₁ �
   field
     lim : ∀ (X : Obj 𝐽) (𝑢 : N ⇒ L) → 𝐶 [ (ϕ X ∘ 𝑢) ≈ ψ X ]
 
-record Colimit (F : Functor 𝐽 𝐶) {𝑈 : Cocone F} {C : Cocone F} : Set (o₁ ⊔ m₁ ⊔ e₁ ⊔ o₂ ⊔ m₂ ⊔ e₂) where
+record Colimit (F : Functor 𝐽 𝐶) {𝑈 : Cocone F} {C : Cocone F} : Set (o₁ ⊔ m₂ ⊔ e₂) where
   open Category 𝐶 using (_⇒_; _∘_)
   open Functor F using (Fₒ)
   open Cocone C renaming (Apex to N)

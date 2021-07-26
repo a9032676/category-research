@@ -38,5 +38,7 @@ private
 CategoricalIsomorphism : ∀ (𝐶 : Category o₁ m₁ e₁) (A B : Obj 𝐶) → Set (o₁ ⊔ suc m₁)
 CategoricalIsomorphism 𝐶 = Isomorphic (𝐶 [_,_]) (id 𝐶) (𝐶 [_∘_])
 
-NaturalIsomorphism : (𝐶 : Category o₁ m₁ e₁) (𝐷 : Category o₂ m₂ e₂) (F G : Functor 𝐶 𝐷) → Set (suc (o₁ ⊔ m₁ ⊔ e₁ ⊔ o₂ ⊔ m₂ ⊔ e₂))
+NaturalIsomorphism :
+  (𝐶 : Category o₁ m₁ e₁) (𝐷 : Category o₂ m₂ e₂)
+  (F G : Functor 𝐶 𝐷) → Set (suc (o₁ ⊔ m₁ ⊔ e₁ ⊔ o₂ ⊔ m₂ ⊔ e₂))
 NaturalIsomorphism 𝐶 𝐷 = Isomorphic (λ dom cod → [ 𝐶 , 𝐷 ]⟨ dom , cod ⟩) (η (id 𝐷)) _∘ᵛ_

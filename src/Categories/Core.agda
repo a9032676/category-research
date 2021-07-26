@@ -32,9 +32,14 @@ private
   variable
     o m e : Level
 
+
 module Syntaxes (𝐶 : Category o m e) where
   open Category 𝐶 using (Obj; _⇒_; _∘_; _≈_)
 
+  infix 4 _[_≈_] _[_,_]
+  infix 9 _[_∘_]
+  infix 10 ▢
+  
   _[_,_] : (A B : Obj) → Set m
   _[_,_] = _⇒_
 
@@ -44,16 +49,17 @@ module Syntaxes (𝐶 : Category o m e) where
   _[_≈_] : {A B : Obj} (f g : A ⇒ B) → Set e
   _[_≈_] = _≈_
 
-open Syntaxes public
+  -- Commutative sqaure
+  ▢ :
+    {A B C D : Obj}
+    (f : A ⇒ B) (g : A ⇒ C)
+    (h : B ⇒ D) (i : C ⇒ D)
+    → Set e
+  ▢ f g h i = h ∘ f ≈ i ∘ g
 
-CommutativeSquare :
-  {𝐶 : Category o m e} {A B C D : Category.Obj 𝐶}
-  (f : 𝐶 [ A , B ]) (g : 𝐶 [ A , C ])
-  (h : 𝐶 [ B , D ]) (i : 𝐶 [ C , D ])
-  → Set e
-CommutativeSquare {𝐶 = 𝐶} f g h i = h ∘ f ≈ i ∘ g
-  where
-    open Category 𝐶 using (_∘_; _≈_)
+  syntax ▢ 𝐶 f g h i = 𝐶 [ h ∘ f ≈ i ∘ g ]
+
+open Syntaxes public
 
 record Inverse {𝐶 : Category o m e} : Set (suc (o ⊔ m)) where
   open Category 𝐶 using (_⇒_)

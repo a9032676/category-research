@@ -36,8 +36,8 @@ record _≡↓_
     eq-α-cod : α cod₁ ≡ α cod₂
     eq-β-dom : β dom₁ ≡ β dom₂
     eq-β-cod : β cod₁ ≡ β cod₂
-    eq-αₘ : CommutativeSquare {𝐶 = A} (proj₁ p) (hid {𝐶 = A} eq-α-dom) (hid {𝐶 = A} eq-α-cod) (proj₁ q)
-    eq-βₘ : CommutativeSquare {𝐶 = B} (proj₂ p) (hid {𝐶 = B} eq-β-dom) (hid {𝐶 = B} eq-β-cod) (proj₂ q)
+    eq-αₘ : A [ hid {𝐶 = A} eq-α-cod ∘ proj₁ p ≈ proj₁ q ∘ hid {𝐶 = A} eq-α-dom ]
+    eq-βₘ : B [ hid {𝐶 = B} eq-β-cod ∘ proj₂ p ≈ proj₂ q ∘ hid {𝐶 = B} eq-β-dom ]
 
 infix 4 Comma
 syntax Comma S T = S ↓ T

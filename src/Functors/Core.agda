@@ -41,7 +41,9 @@ record _≡F_
   open Functor G renaming (Fₒ to Gₒ; Fₘ to Gₘ)
   field
     eqₒ : ∀ {X : Obj 𝐶} → Fₒ X ≡ Gₒ X
-    eqₘ : ∀ {X Y : Obj 𝐶} (f : 𝐶 [ X , Y ]) → CommutativeSquare {𝐶 = 𝐷} (Fₘ f) (hid {𝐶 = 𝐷} eqₒ) (hid {𝐶 = 𝐷} eqₒ) (Gₘ f)
+    eqₘ :
+      ∀ {X Y : Obj 𝐶} (f : 𝐶 [ X , Y ])
+      → 𝐷 [ hid {𝐶 = 𝐷} eqₒ ∘ Fₘ f ≈ Gₘ f ∘ hid {𝐶 = 𝐷} eqₒ ]
 
 private
   variable

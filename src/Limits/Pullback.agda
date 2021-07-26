@@ -24,7 +24,7 @@ record Pullback
     𝑝₁ : 𝐶 [ P , X ]
     𝑝₂ : 𝐶 [ P , Y ]
   field
-    commute : CommutativeSquare {𝐶 = 𝐶} 𝑝₁ 𝑝₂ f g
+    commute : 𝐶 [ f ∘ 𝑝₁ ≈ g ∘ 𝑝₂ ]
 
   module _
     ((record { P = Q ; 𝑝₁ = 𝑞₁ ; 𝑝₂ = 𝑞₂ })

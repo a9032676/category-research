@@ -1,17 +1,16 @@
 module Limits.Pullback where
 
-
 open import Level
 open import Categories.Core
 open import Functors.Core hiding (_∘_)
-open import Limits.Core using (Cone; Limit)
 open import Properties.Universal
 open import Morphisms.Universal using (UM⟨_,_⟩)
 
 private
   variable
     o₁ m₁ e₁ : Level
-
+    
+syntax Pullback X Y Z = X ×[ Z ] Y
 infix 5 Pull⟨_,_,_⟩
 
 record Pullback 

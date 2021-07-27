@@ -39,6 +39,9 @@ module Syntaxes (𝐶 : Category o m e) where
   infix 4 _[_≈_] _[_,_]
   infix 9 _[_∘_]
   infix 10 ▢
+
+  _ᵒᵖ : Category o m e
+  _ᵒᵖ = Category.op 𝐶
   
   _[_,_] : (A B : Obj) → Set m
   _[_,_] = _⇒_

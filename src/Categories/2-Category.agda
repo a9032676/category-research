@@ -32,6 +32,8 @@ Cat {o} {m} {e} = record
   ; _≈_ = _≡F_
   }
 
+infix 3 [_,_]
+
 -- Functor Category
 [_,_] : Category o₁ m₁ e₁
      → Category o₂ m₂ e₂

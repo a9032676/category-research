@@ -1,11 +1,8 @@
-module Morphisms.Parallel where
-
 open import Level
-open import Categories.Core
 
-private
-  variable
-    o m e : Level
+module Morphisms.Parallel {o m e : Level} where
+
+open import Categories.Core
 
 syntax ParallelMorphism X Y = X ⇉ Y
 
@@ -15,3 +12,6 @@ record ParallelMorphism {𝐶 : Category o m e} (X Y : Obj 𝐶) : Set m where
   field
     f : X ⇒ Y
     g : X ⇒ Y
+
+_[_⇉_] : (𝐶 : Category o m e) (X Y : Obj 𝐶) → Set m
+𝐶 [ X ⇉ Y ] = ParallelMorphism {𝐶 = 𝐶} X Y

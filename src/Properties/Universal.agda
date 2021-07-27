@@ -1,14 +1,15 @@
-module Properties.Universal where
-
 open import Level
 open import Categories.Core
 open import Functors.Core hiding (_∘_)
+
+module Properties.Universal
+  {o₁ m₁ e₁ o₂ m₂ e₂ : Level}
+  {𝐶 : Category o₁ m₁ e₁} {𝐷 : Category o₂ m₂ e₂}
+  {F : Functor 𝐶 𝐷} {X : Obj 𝐷} {A′ : Obj 𝐶}
+  where
+
 open import Data.Product using (Σ; _,_)
 open import Morphisms.Universal
-
-private
-  variable
-    o₁ m₁ e₁ o₂ m₂ e₂ : Level
 
 {-
   Cannot pattern-matching telescopes in record declarations:
@@ -16,8 +17,6 @@ private
 -}
 
 module _
-  {𝐶 : Category o₁ m₁ e₁} {𝐷 : Category o₂ m₂ e₂}
-  {F : Functor 𝐶 𝐷} {X : Obj 𝐷} {A′ : Obj 𝐶}
   ((UM⟨ A , 𝑢 ⟩) : X 𝒰-⇒ F) (open Functor F using (Fₒ))
   (f : 𝐷 [ X , Fₒ A′ ]) (h : 𝐶 [ A , A′ ])
   where
@@ -28,8 +27,6 @@ module _
         commutes : 𝐷 [ Fₘ h ∘ 𝑢 ≈ f ]
 
 module _
-  {𝐶 : Category o₁ m₁ e₁} {𝐷 : Category o₂ m₂ e₂}
-  {F : Functor 𝐶 𝐷} {X : Obj 𝐷} {A′ : Obj 𝐶}
   ((UM!⟨ A , 𝑢 ⟩) : X 𝒰-⇒! F) (open Functor F using (Fₒ))
   (f : 𝐷 [ Fₒ A′ , X ]) (h : 𝐶 [ A′ , A ])
   where

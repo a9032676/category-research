@@ -3,11 +3,13 @@ open import Categories.Core
 
 module Limits.Core
   {o₁ m₁ e₁ o₂ m₂ e₂ : Level}
-  {𝐽 : Category o₁ m₁ e₁}
+  {𝐽 𝐷 : Category o₁ m₁ e₁}
   {𝐶 : Category o₂ m₂ e₂}
   where
 
 open import Categories.Comma
+open import Categories.Sets
+open import Categories.2-Category renaming ([_,_] to Hom[_,_])
 open import Functors.Core hiding (_∘_)
 open import NaturalTransformations.Core
 
@@ -64,3 +66,18 @@ record Colimit (F : Functor 𝐽 𝐶) {𝑈 : Cocone F} {C : Cocone F} : Set (o
   open Cocone 𝑈 renaming (Apex to L; ψ to ϕ)
   field
     colim : ∀ (X : Obj 𝐽) (𝑢 : L ⇒ N) → 𝐶 [ (𝑢 ∘ ϕ X) ≈ ψ X ]
+
+-- Local definition of (co)limit of Set-valued functor in presheaf category
+module _ (F : Functor (𝐷 ᵒᵖ) (𝑆𝑒𝑡 o₂)) (✶ : Obj (𝑆𝑒𝑡 o₂)) where
+  --open import Objects.Terminal {𝐶 = 𝑆𝑒𝑡 o₂} renaming (𝟙 to ✶)
+
+  pt : Functor (𝐷 ᵒᵖ) (𝑆𝑒𝑡 o₂)
+  pt = record { Fₒ = λ d → ✶ ; Fₘ = λ _ ✶ → ✶ }
+
+  record Limit-SVF : Set (o₁ ⊔ m₁ ⊔ e₁ ⊔ suc o₂) where
+    field
+      lim : Hom[ 𝐷 ᵒᵖ , 𝑆𝑒𝑡 o₂ ] [ pt , F ]
+
+  record Colimit-SVF : Set (o₁ ⊔ m₁ ⊔ e₁ ⊔ suc o₂) where
+    field
+      colim : Hom[ 𝐷 ᵒᵖ , 𝑆𝑒𝑡 o₂ ] [ F , pt ]

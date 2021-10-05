@@ -14,9 +14,9 @@ record NaturalTransformation
   (F G : Functor 𝐶 𝐷) : Set (o₁ ⊔ m₁ ⊔ e₁ ⊔ o₂ ⊔ m₂ ⊔ e₂) where
   constructor η_
   open Functor F using (Fₒ)
-  private module G = Functor G
+  open Functor G renaming (Fₒ to Gₒ)
   field
-    η-mor : ∀ {X : Obj 𝐶} → 𝐷 [ Fₒ X , G.Fₒ X ]
+    η-mor : ∀ {X : Obj 𝐶} → 𝐷 [ Fₒ X , Gₒ X ]
 
 syntax NaturalTransformation 𝐶 𝐷 F G = [ 𝐶 , 𝐷 ]⟨ F , G ⟩
 

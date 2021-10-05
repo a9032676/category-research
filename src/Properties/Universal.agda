@@ -9,7 +9,7 @@ module Properties.Universal
   where
 
 open import Data.Product using (Σ; _,_)
-open import Morphisms.Universal
+open import Morphisms.Universal public
 
 {-
   Cannot pattern-matching telescopes in record declarations:
@@ -35,4 +35,3 @@ module _
       open Functor F using (Fₘ)
       field
         commutes : 𝐷 [ 𝑢 ∘ (Fₘ h) ≈ f ]
-

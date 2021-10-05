@@ -31,4 +31,5 @@ ProductCategory 𝐶 𝐷 = record
     private module 𝐶 = Category 𝐶
     private module 𝐷 = Category 𝐷
 
+infixr 2 ProductCategory
 syntax ProductCategory 𝐶 𝐷 = 𝐶 × 𝐷

@@ -8,8 +8,7 @@ module Categories.Comma
   {C : Category o₃ m₃ e₃}
   where
 
-open import Categories.Product
-open import Data.Product renaming (_×_ to _×ᵖ_)
+open import Categories.Product public
 open import Functors.Core hiding (_∘_)
 open import CategoricalRelation.Heterogeneous using (hid)
 

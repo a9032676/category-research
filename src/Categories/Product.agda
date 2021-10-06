@@ -4,10 +4,8 @@ module Categories.Product {o₁ m₁ e₁ o₂ m₂ e₂ : Level} where
 
 open import Data.Product renaming (_×_ to _×ᵖ_) public
 
-open import Categories.Core
-open import CategoricalRelation.Heterogeneous using (hid)
-
-open import Relation.Binary.PropositionalEquality using (refl)
+open import Categories.Core public
+open import CategoricalRelation.Heterogeneous using (hid; refl)
 
 record _≡×Cat_
   {𝐶 : Category o₁ m₁ e₁} {𝐷 : Category o₂ m₂ e₂}

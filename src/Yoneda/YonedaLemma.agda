@@ -2,12 +2,8 @@ open import Level
 
 module Yoneda.YonedaLemma {o m e : Level} where
 
-open import Categories.Core
-open import Categories.Sets
-open import Functors.Core
-open import Functors.Homfunctor
-open import NaturalTransformations.Core
-open import Morphisms.Isomorphism
+open import Functors.Homfunctor public
+open import Transformations.Core public
 
 module Yoneda (C : Category o m e) {X : Obj C} {F : Functor C (𝑆𝑒𝑡 m)} where
   open Functor F

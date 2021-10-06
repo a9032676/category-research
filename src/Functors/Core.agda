@@ -3,10 +3,9 @@ module Functors.Core where
 open import Level
 open import Function hiding (Inverse) renaming (_∘_ to _∘ᶠ_; id to idᶠ)
 open import Relation.Binary using (Rel)
-open import Relation.Binary.PropositionalEquality using (_≡_; refl; subst)
 open import CategoricalRelation.Heterogeneous
 
-open import Categories.Core hiding (op; id)
+open import Categories.Core hiding (op; id) public
 
 private
   variable
@@ -78,13 +77,15 @@ syntax ConstantFunctor X = Δ X
 --constant∘contraʳ : Functor C D.op
 --constant∘contraʳ = record { Fₒ = Fₒ; Fₘ = λ A⇒B → Fₘ C.id }
 
-infixr 9 _∘_
+module Syntax where
 
-_∘_ : (F : Functor 𝐶 𝐷) (G : Functor 𝐷 𝐸) → Functor 𝐶 𝐸
-_∘_
-  record { Fₒ = Fₒ₁ ; Fₘ = Fₘ₁ }
-  record { Fₒ = Fₒ₂ ; Fₘ = Fₘ₂ }
-  = record { Fₒ = Fₒ₂ ∘ᶠ Fₒ₁ ; Fₘ = Fₘ₂ ∘ᶠ Fₘ₁ }
+  infixr 9 _∘_
 
-_² : (F : Functor 𝐶 𝐶) → Functor 𝐶 𝐶
-F ² = F ∘ F
+  _∘_ : (F : Functor 𝐶 𝐷) (G : Functor 𝐷 𝐸) → Functor 𝐶 𝐸
+  _∘_
+    record { Fₒ = Fₒ₁ ; Fₘ = Fₘ₁ }
+    record { Fₒ = Fₒ₂ ; Fₘ = Fₘ₂ }
+    = record { Fₒ = Fₒ₂ ∘ᶠ Fₒ₁ ; Fₘ = Fₘ₂ ∘ᶠ Fₘ₁ }
+
+  _² : (F : Functor 𝐶 𝐶) → Functor 𝐶 𝐶
+  F ² = F ∘ F

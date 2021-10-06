@@ -1,6 +1,5 @@
 open import Level
 open import Categories.Core hiding (Obj)
-open import Limits.Core
 open import Morphisms.Isomorphism using (CategoricalIsomorphism; refl)
 
 module Objects.Terminal
@@ -8,7 +7,7 @@ module Objects.Terminal
   {𝐶 : Category o m e}
   where
 
-open import Properties.Universal
+open import Properties.Universal hiding (Obj)
 
 -- Terminal object with universal property
 record Terminal : Set (o ⊔ m ⊔ e) where

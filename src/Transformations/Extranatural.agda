@@ -1,5 +1,5 @@
 open import Level
-open import Categories.Core
+open import Categories.Core using (Category)
 
 module Transformations.Extranatural
   {o₁ m₁ e₁ o₂ m₂ e₂ o₃ m₃ e₃ o₄ m₄ e₄ : Level}
@@ -9,8 +9,8 @@ module Transformations.Extranatural
   {𝐷 : Category o₄ m₄ e₄}
   where
 
-open import Categories.Product
-open import Functors.Core using (Functor)
+open import Categories.Product public
+open import Functors.Core using (Functor) public
 
 record ExtranaturalTransformation
   (F : Functor (𝐴 × 𝐵 × 𝐵 ᵒᵖ) 𝐷)

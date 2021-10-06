@@ -1,19 +1,12 @@
-module Functors.Adjunction where
-
 open import Level
 
-open import Categories.Core
+module Functors.Adjunction {o m e : Level} where
+
 open import Categories.Sets
-open import Categories.Product using (ProductCategory)
+open import Categories.Product using (ProductCategory; _,_; _×ᵖ_)
 open import Functors.Core using (Functor)
 open import Functors.Homfunctor using (Hom[_,_])
 open import Morphisms.Isomorphism using (NaturalIsomorphism)
-
-open import Data.Product using (_,_) renaming (_×_ to _×ᵖ_)
-
-private
-  variable
-    o m e : Level
 
 -- Functor F is left adjoint to G, and G is right adjoint to F
 syntax HomSetAdjointFunctor F G = F ⊣ G

@@ -1,7 +1,7 @@
 module Categories.Sets where
 
 open import Level
-open import Categories.Core
+open import Categories.Core public
 
 open import Relation.Binary.PropositionalEquality using (_≡_)
 

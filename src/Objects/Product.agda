@@ -1,5 +1,4 @@
 open import Level
- 
 open import Categories.Core using (Category)
 
 module Objects.Product {o m e : Level} (𝐶 : Category o m e) where

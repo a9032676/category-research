@@ -7,8 +7,8 @@ module Morphisms.Universal
   {𝐷 : Category o₂ m₂ e₂}
   where
 
-open import Functors.Core hiding (_∘_)
-open import Data.Product using (Σ; _,_)
+open import Functors.Core public
+open import Data.Product using (Σ; _,_) public
 
 infix 4 UM⟨_,_⟩
 infix 4 UM!⟨_,_⟩

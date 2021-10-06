@@ -1,8 +1,9 @@
-open import Level
- 
-open import Categories.Core
+open import Level 
+open import Categories.Core using (Category)
 
 module Objects.Coproduct {o m e : Level} where
+
+open import Categories.Core public
 
 -- A B : Ob(𝐶)
 record Coproduct {𝐶 : Category o m e} (A B : Category.Obj 𝐶) : Set (o ⊔ m ⊔ e) where

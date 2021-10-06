@@ -1,13 +1,9 @@
-module Transformations.Core where
-
 open import Level
 
-open import Categories.Core
-open import Functors.Core
+module Transformations.Core {o₁ m₁ e₁ o₂ m₂ e₂ : Level} where
 
-private
-  variable
-    o₁ m₁ e₁ o₂ m₂ e₂ : Level
+open import Categories.Core public
+open import Functors.Core public
 
 record NaturalTransformation
   (𝐶 : Category o₁ m₁ e₁) (𝐷 : Category o₂ m₂ e₂)

@@ -5,7 +5,10 @@ open import Level
 open import Categories.Core
 open import Functors.Core
 open import Functors.Adjunction
-open import NaturalTransformations.Core
+open import Transformations.Core
+
+open Functors.Core.Syntax
+
 
 private
   variable

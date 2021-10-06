@@ -10,8 +10,6 @@ module Limits.Core
 open import Categories.Comma
 open import Categories.Sets
 open import Categories.2-Category renaming ([_,_] to Hom[_,_])
-open import Functors.Core hiding (_∘_)
-open import NaturalTransformations.Core
 
 open Category using (Obj)
 

@@ -1,10 +1,7 @@
 module Limits.Pushout where
 
 open import Level
-open import Categories.Core
-open import Functors.Core hiding (_∘_)
 open import Properties.Universal
-open import Morphisms.Universal using (UM⟨_,_⟩)
 
 private
   variable

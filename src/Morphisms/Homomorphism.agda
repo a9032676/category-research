@@ -1,14 +1,11 @@
-module Morphisms.Homomorphism where
-
 open import Level
-open import Categories.Core
-open import Morphisms.Isomorphism
-open import Relation.Binary using (Rel)
-open import Relation.Binary.PropositionalEquality public
 
-private
-  variable
-    o m e ℓ : Level
+module Morphisms.Homomorphism {o m e ℓ : Level} where
+
+open import Morphisms.Isomorphism
+
+open import Categories.Core public
+open import Relation.Binary.PropositionalEquality public
 
 Homomorphism :
   ∀ {A B : Set ℓ} (f : A → B)

@@ -1,13 +1,8 @@
-module Limits.Equalizer where
-
 open import Level
-open import Categories.Core
-open import Morphisms.Parallel
-open import Limits.Core using (Limit; Cone)
 
-private
-  variable
-    o m e : Level
+module Limits.Equalizer {o m e : Level} where
+
+open import Morphisms.Parallel
      
 record Equalizer {𝐶 : Category o m e} (X Y : Obj 𝐶) (f g : 𝐶 [ X , Y ]) : Set (o ⊔ m ⊔ e) where
   open Category 𝐶 using (_⇒_)

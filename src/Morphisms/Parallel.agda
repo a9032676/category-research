@@ -2,7 +2,7 @@ open import Level
 
 module Morphisms.Parallel {o m e : Level} where
 
-open import Categories.Core
+open import Categories.Core public
 
 syntax ParallelMorphism X Y = X ⇉ Y
 

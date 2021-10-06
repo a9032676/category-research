@@ -1,6 +1,5 @@
 open import Level
-open import Categories.Core
-open import Functors.Core hiding (_∘_)
+open import Functors.Core
 
 module Properties.Universal
   {o₁ m₁ e₁ o₂ m₂ e₂ : Level}
@@ -8,7 +7,7 @@ module Properties.Universal
   {F : Functor 𝐶 𝐷} {X : Obj 𝐷} {A′ : Obj 𝐶}
   where
 
-open import Data.Product using (Σ; _,_)
+open import Functors.Core public
 open import Morphisms.Universal public
 
 {-

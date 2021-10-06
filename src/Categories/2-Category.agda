@@ -3,9 +3,9 @@ module Categories.2-Category where
 open import Level
 open import Function hiding (Inverse) renaming (_∘_ to _∘ᶠ_; id to idᶠ)
 
-open import Categories.Core
-open import Functors.Core
-open import NaturalTransformations.Core
+open import Categories.Core public
+open import Functors.Core public
+open import Transformations.Core public
 open import Morphisms.Isomorphism using (CategoricalIsomorphism)
 
 open Functor using (Fₒ; Fₘ)

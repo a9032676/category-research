@@ -1,5 +1,5 @@
 open import Level
-open import Categories.Core
+open import Categories.Core using (Category)
 
 module Transformations.Dinatural
   {o₁ m₁ e₁ o₂ m₂ e₂ : Level}
@@ -7,8 +7,8 @@ module Transformations.Dinatural
   {𝐷 : Category o₂ m₂ e₂}
   where
 
-open import Categories.Product
-open import Functors.Core using (Functor)
+open import Categories.Product public
+open import Functors.Core using (Functor) public
 
 record DinaturalTransformation
   (F G : Functor (𝐶 ᵒᵖ × 𝐶) 𝐷)

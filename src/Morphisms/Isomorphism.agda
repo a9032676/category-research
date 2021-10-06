@@ -1,9 +1,7 @@
 module Morphisms.Isomorphism where
 
 open import Level
-open import Categories.Core
-open import Functors.Core
-open import NaturalTransformations.Core
+open import Transformations.Core
 open import Function renaming (id to idᶠ; _∘′_ to _∘ᶠ_)
 open import Relation.Binary using (Rel)
 open import Relation.Binary.PropositionalEquality public

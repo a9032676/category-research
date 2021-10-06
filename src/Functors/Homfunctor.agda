@@ -2,15 +2,10 @@ module Functors.Homfunctor where
 
 open import Level
 open import Function using (flip)
-open import Data.Product renaming (_×_ to _×ᵖ_)
 
-open import Categories.Core
-open import Categories.Product
-open import Categories.Sets
-open import Functors.Core
-open import Functors.Bifunctor
-
-open Category
+open import Categories.Product public
+open import Categories.Sets public
+open import Functors.Bifunctor public
 
 private
   variable

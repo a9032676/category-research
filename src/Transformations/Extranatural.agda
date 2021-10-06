@@ -13,10 +13,10 @@ open import Categories.Product
 open import Functors.Core using (Functor)
 
 record ExtranaturalTransformation
-  (F : Functor (𝐴 × 𝐵 × (𝐵 ᵒᵖ)) 𝐷)
-  (G : Functor (𝐴 × 𝐶 × (𝐶 ᵒᵖ)) 𝐷)
+  (F : Functor (𝐴 × 𝐵 × 𝐵 ᵒᵖ) 𝐷)
+  (G : Functor (𝐴 × 𝐶 × 𝐶 ᵒᵖ) 𝐷)
   {a : Obj 𝐴} {b : Obj 𝐵} {c : Obj 𝐶}
-  : Set (o₁ ⊔ m₁ ⊔ e₁ ⊔ o₂ ⊔ m₂ ⊔ e₂ ⊔ o₃ ⊔ m₃ ⊔ e₃ ⊔ o₄ ⊔ m₄ ⊔ e₄) where
+  : Set (o₁ ⊔ m₁ ⊔ o₂ ⊔ m₂ ⊔ o₃ ⊔ m₃ ⊔ m₄ ⊔ e₄) where
   open Category 𝐷 using (_⇒_)
   open Functor F using (Fₒ; Fₘ)
   open Functor G renaming (Fₒ to Gₒ; Fₘ to Gₘ)

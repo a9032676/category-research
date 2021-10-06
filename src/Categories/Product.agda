@@ -2,7 +2,7 @@ open import Level
 
 module Categories.Product {o₁ m₁ e₁ o₂ m₂ e₂ : Level} where
 
-open import Data.Product renaming (_×_ to _×ᵖ_)
+open import Data.Product renaming (_×_ to _×ᵖ_) public
 
 open import Categories.Core
 open import CategoricalRelation.Heterogeneous using (hid)

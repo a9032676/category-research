@@ -1,4 +1,4 @@
-module NaturalTransformations.Core where
+module Transformations.Core where
 
 open import Level
 

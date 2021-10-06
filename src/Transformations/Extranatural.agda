@@ -1,7 +1,7 @@
 open import Level
 open import Categories.Core
 
-module NaturalTransformations.Extranatural
+module Transformations.Extranatural
   {o₁ m₁ e₁ o₂ m₂ e₂ o₃ m₃ e₃ o₄ m₄ e₄ : Level}
   {A : Category o₁ m₁ e₁}
   {B : Category o₂ m₂ e₂}

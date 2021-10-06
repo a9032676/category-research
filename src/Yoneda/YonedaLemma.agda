@@ -1,6 +1,6 @@
-module Yoneda.YonedaLemma where
-
 open import Level
+
+module Yoneda.YonedaLemma {o m e : Level} where
 
 open import Categories.Core
 open import Categories.Sets
@@ -9,26 +9,11 @@ open import Functors.Homfunctor
 open import NaturalTransformations.Core
 open import Morphisms.Isomorphism
 
-private
-  variable
-    o m e : Level
-    
-open Category
-open Functor
-open NaturalTransformation
+module Yoneda (C : Category o m e) {X : Obj C} {F : Functor C (𝑆𝑒𝑡 m)} where
+  open Functor F
 
-toYoneda : (C : Category o m e) {X : Obj C} {F : Functor C (𝑆𝑒𝑡 m)}
-           → [ C , 𝑆𝑒𝑡 m ]⟨ Hom C [ X ,─] , F ⟩
-           → Fₒ F X
-toYoneda
-  record { id = id }
-  (η α)
-  = α id 
+  toYoneda : [ C , 𝑆𝑒𝑡 m ]⟨ Hom C [ X ,─] , F ⟩ → Fₒ X
+  toYoneda (η α) = α (id C)
 
-fromYoneda : {C : Category o m e} {X : Obj C} (F : Functor C (𝑆𝑒𝑡 m))
-             → Fₒ F X
-             → [ C , 𝑆𝑒𝑡 m ]⟨ Hom C [ X ,─] , F ⟩
-fromYoneda
-  record { Fₘ = Fₘ }
-  u
-  = η (λ f → (Fₘ f) u)
+  fromYoneda : Fₒ X → [ C , 𝑆𝑒𝑡 m ]⟨ Hom C [ X ,─] , F ⟩
+  fromYoneda u = η (λ f → (Fₘ f) u)

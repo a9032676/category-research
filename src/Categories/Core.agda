@@ -39,6 +39,7 @@ module Syntaxes (𝐶 : Category o m e) where
   infix 4 _[_≈_] _[_,_]
   infix 9 _[_∘_]
   infix 10 ▢
+  infix 11 ▢²
 
   _ᵒᵖ : Category o m e
   _ᵒᵖ = Category.op 𝐶
@@ -60,7 +61,18 @@ module Syntaxes (𝐶 : Category o m e) where
     → Set e
   ▢ f g h i = h ∘ f ≈ i ∘ g
 
-  syntax ▢ 𝐶 f g h i = 𝐶 [ h ∘ f ≈ i ∘ g ]
+  -- Commutative hexagon
+  ▢² :
+    {A B C D E F : Obj}
+    (f : A ⇒ B) (g : A ⇒ C)
+    (h : B ⇒ D) (i : C ⇒ E)
+    (j : D ⇒ F) (k : E ⇒ F)
+    → Set e
+  ▢² f g h i j k = j ∘ h ∘ f ≈ k ∘ i ∘ g
+
+
+  syntax ▢ 𝐶 f g h i = 𝐶 [ h ∘ f ≈ i ∘ g ]  
+  syntax ▢² 𝐶 f g h i j k = 𝐶 [ j ∘ h ∘ f ≈ k ∘ i ∘ g ]
 
 open Syntaxes public
 

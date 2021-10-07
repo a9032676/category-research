@@ -23,3 +23,5 @@ record DinaturalTransformation
     𝟙 :
       ∀ {c′ : Obj 𝐶} {f : 𝐶 [ c , c′ ]}
       → 𝐷 [ Gₘ (id 𝐶 , f) ∘ α⟨c⟩ ∘ Fₘ (f , id 𝐶) ≈ Gₘ (id 𝐶 , f) ∘ α⟨c⟩ ∘ Fₘ (f , id 𝐶) ]
+
+syntax DinaturalTransformation F G = F Di⇒ G
